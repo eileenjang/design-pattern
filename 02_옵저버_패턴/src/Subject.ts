@@ -1,4 +1,3 @@
-
 class ConditionDisplay {
   private temperature: number;
   private humidity: number;
