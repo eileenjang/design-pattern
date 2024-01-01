@@ -3,7 +3,7 @@
  * getter/setter 메서드를 통해 Subject의 상태를 관리한다.
  */
 
-import { Observer, Subject } from "./ObserverUtils";
+import { Observer, Subject } from "./Utils";
 import { WeatherDataStore } from "./store";
 
 export class WeatherData implements Subject {
