@@ -128,6 +128,17 @@ class ConcreteObserver implements Observer {
 
 - 상호작용하는 객체 사이에는 가능하면 느슨한 결합을 사용해야 한다.
 
+## 옵저버 패턴 특징
+
+- MVC 패턴에서 사용됨 (Model, View, Controller)
+  - Model과 View의 관계는 Observer 패턴의 Subject 역할과 Observer 역할의 관계에 대응됨.
+  - 하나의 Model -> 복수의 View
+
+![image](https://github.com/eileenjang/design-pattern/assets/82510378/d1282a42-bb3d-4c83-8f73-011a1dcf8a23)
+
+- 구독자는 알림 순서를 제어하기 어려움.
+- 다수의 옵저버 객체를 등록 이후 해지하지 않는다면 메모리 누수가 발생할 수도 있음.
+
 ## 가상 스테이션 설계하기
 
 <img width="336" alt="image" src="https://github.com/eileenjang/design-pattern/assets/82510378/3fa2beac-0d3f-4e1c-bb5d-4c0ceb6c8851">
