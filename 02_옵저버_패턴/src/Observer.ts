@@ -1,4 +1,4 @@
-import { DisplayElement, Observer } from "./ObserverUtils";
+import { DisplayElement, Observer } from "./Utils";
 import { WeatherDataStore } from "./store";
 import { WeatherData } from "./SubjectUtils";
 
