@@ -3,9 +3,12 @@
 - 뭔가 중요한 일이 일어났을 때 객체에게 `새 소식`을 알려줄 수 있는 패턴.
 - 2장에서는 `일대다 관계`나 `느슨한 결합`과 관련된 내용을 배울 것이다.
 
+![image](https://github.com/eileenjang/design-pattern/assets/82510378/753cbae7-de51-4db5-bcc1-2545fd8a09cc)
+
 ## 가상 모니터링 애플리케이션 알아보기
 
 - 시스템은 기상 스테이션 (실제 기상 정보 수집) + WeatherData 객체 (기상 스테이션으로부터 오는 정보를 추적하는 객체) + 사용자에게 현재 기상조건을 보여주는 디스플레이 장비로 구성됨
+
 
 ## WeatherData 클래스 살펴보기
 
@@ -57,12 +60,14 @@ interface Subject {
   registerObserver(): void;
   removeObserver(): void;
   notifyObserver(): void;
+}
 ```
 
 - 옵저버가 될 가능성이 있는 객체는 반드시 Observer 인터페이스를 구현해야 하며, 이 인터페이스에는 주제의 상태가 바뀌었을 때 호출되는 update() 메서드밖에 없다.
 ```ts
 interface Observer {
   update(): void;
+}
 ```
 
 - 주제 역할을 하는 구상 클래스에는 항상 Subject 인터페이스를 구현해야 한다. 주제 클래스에는 등록 및 해지용 메서드와 상태가 바뀔 때마다 모든 옵저버에게 연락하는 notifyMethod()를 구현해아 한다.
