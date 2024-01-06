@@ -127,5 +127,40 @@ class Espresso extends Beverage {
 
 ### 데코레이터 패턴의 정의
 
+데코레이터 패턴으로 객체에 추가 요소를 `동적으로 더할 수 있다`. 데코레이터를 사용하면 서브클래스를 만들 때보다 훨씬 유연하게 기능을 확장할 수 있다.
 
+```ts
+abstract class Component {
+  methodA()
+  methodB()
+}
 
+// 데코레이터 안에는 Component 객체가 들어있음. 즉, 데코레이터에는 구성 요소 레퍼런스를 포함한 인스턴스 변수가 있음.
+class Decorator extends Component {
+  protected wrappedObj: Component; // 자신이 장식할 구성요소와 동일한 인터페이스 또는 추상클래스를 구현
+  methodA()
+  methodB()
+}
+
+class ConcreteComponent extends Component {
+  methodA() { // 새로운 행동의 동적 추가
+    const a = super.methodA();
+    return a + 'sth new';
+  }
+  methodB()
+}
+
+class ConcreteDecoratorA extends Decorator {
+  methodA()
+  methodB()
+  newBehavior() // 새로운 메소드 e.g. 기존 메소드 호출 후 새로운 기능 추가
+  // ... other methods
+}
+
+class ConcreteDecoratorB extends Decorator {
+  protected newState: Object; // 상태를 확장할 수 있음
+  methodA()
+  methodB()
+  // ... other methods
+}
+```
