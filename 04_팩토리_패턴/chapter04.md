@@ -155,5 +155,80 @@ class NYPizzaStore extends PizzaStore {
 ```
 ### Pizza 클래스 만들기
 
+```ts
+abstract class Pizza {
+  name: string;
+  dough: string;
+  sauce: string;
+  toppings: string[] = [];
+
+  prepare(): void {
+    console.log(`preparing ${this.name}`);
+    console.log("Tossing dough...");
+    console.log("Adding sauce...");
+    console.log("Adding toppings: ");
+
+    for (let i=0; i<this.toppings.length; i++) {
+      console.log(`  {this.toppings[i])`);
+    }
+  }
+
+  bake(): void {
+    console.log("Bake for 25 minutes at 175 degrees");
+  }
+
+  cut(): void {
+    console.log("Cutting the pizza to diagonal slices");
+  }
+
+  box(): void {
+    console.log("Place pizza in box");
+  }
+
+  getName(): string {
+    return this.name;
+  }
+}
+```
+
+```ts
+class ChicagoStyleCheesePizza extends Pizza {
+  constructor() {
+    super();
+    this.name = "NY style deep dish cheeze pizza";
+    this.dough = "Thick dough";
+    this.sauce = "plum tomato sauce";
+  }
+  cut(): void {
+    console.log("Cutting the pizza into square slices");
+  }
+}
+```
+
+### 팩토리 메소드 패턴 (요소)
+
+- 생산자(Creator) 클래스: PizzaStore abstract class + createPizza() abstract method + orderPizza() method
+- 생산자(Creator) 구상 서브클래스: NYPizzaStore class + createPizza() method
+
+- 제품(Product) 클래스: Pizza abstract class
+- 제품(Product) 구상 서브클래스: ChicagoStyleCheesePizza class
+
+### 팩토리 메소드 패턴 (정의)
+
+- 팩토리 메소드 패턴은 객체 생성할 때 필요한 `인터페이스 (상위 요소)`를 만든다.
+  - 어떤 클래스의 인스턴스를 만들지는 `서브클래스`에서 결정한다
+  - 구상 형식 인스턴스를 만드는 작업을 캡슐화할 수 있다.
+
+### 의존성 뒤집기 원칙
+
+- 추상된 것에 의존하게 만들고, 구상 클래스에 의존하지 않게 만든다.
+![image](https://github.com/eileenjang/design-pattern/assets/82510378/57dcf0b5-80e6-4fc0-a07c-323bb8dc52ae)
+![image](https://github.com/eileenjang/design-pattern/assets/82510378/1c6d8b36-2b83-44ee-90e5-59cbac6061eb)
+
+- PizzaStore는 추상 클래스인 Pizza 클래스에만 의존시키는 방식.
+- 원칙
+  - 변수에 구상 클래스의 레퍼런스를 저장하지 말고, 팩토리를 써서 미리 방지하자.
+  - 구상클래스에서 유도된 클래스를 만들지 말고, 인터페이스/추상클래스처럼 추상화된 것으로부터 클래스를 만들자.
+  - 베이스 클래스 메소드를 오버라이드하지 말고, 베이스 클래스 메소드는 모든 서브클래스에서 공유 가능한 것만 정의하자.
 
 
