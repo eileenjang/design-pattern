@@ -7,7 +7,28 @@
 - 커맨드 객체는 특정 객체의 특정 작업 요청을 캡슐화한다.
 - 각 버튼에 커맨드 객체를 저장하고, 클라이언트가 버튼을 눌렀을 때 커맨드 객체를 통해 작업을 처리하게 만든다.
 
-## Command 인터페이스
+### Command 인터페이스
 - 커맨드 객체는 모두 같은 인터페이스를 사용하며 일반적으로 `excute()` 메서드를 사용한다.
 ```ts
+interface Command {
+  excute(): void;
+}
 ```
+### Command 클래스
+- 클래스에는 `on()`과 `off()` 메서드가 있다.
+```ts
+// Command 객체이므로, 인터페이스를 구현
+public class LightonCommand implements Command {
+    // instance에 리시버 저장
+    light: Light;
+    // 생성자에 전등 정보 저장
+    constructor(light: Light) {
+      this.light = light;
+    }
+    // excute 메서드 실행시 light 객체(리시버)의 on 메서드 호출
+    execute() {
+        this.light.on();
+    }
+}
+```
+### Command 객체
